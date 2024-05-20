@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Configurar o Maven com o nome usado no Jenkins
         MVN_HOME = tool name: 'Maven 3', type: 'maven'
         PATH = "${MVN_HOME}/bin:${env.PATH}"
     }
@@ -25,7 +24,7 @@ pipeline {
                 script {
                     // Verifique o conteúdo do diretório
                     sh 'ls -la'
-                    // Execute o Maven usando apenas 'mvn' pois o PATH já foi atualizado
+                    // Execute o Maven
                     sh 'mvn clean compile'
                 }
             }
