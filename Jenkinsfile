@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage ('Inicial') {
+        stage ('Build Image') {
             steps {
-                echo 'Iniciando a pipeline'
+                script {
+                    sh "${mvnHome}/bin/mvn --batch-mode compile clean install -U -Dmaven.test.skip=true"
+                }
             }
         }
     }
