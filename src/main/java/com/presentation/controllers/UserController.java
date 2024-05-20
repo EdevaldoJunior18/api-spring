@@ -21,22 +21,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping
     public UserDTO createUser(UserDTO dto) {
         return userService.createUser(dto);
     }
 
-    @GetMapping("/find")
+    @GetMapping
     public UserDTO findUser(String document) {
         return userService.findUser(document);
     }
 
-    @PatchMapping("/update")
+    @PatchMapping
     public UserDTO updateUser(String document) {
         return userService.updateUser(document);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     public UserDTO deleteUser(String document, String password) {
         return userService.deleteUser(document, password);
     }

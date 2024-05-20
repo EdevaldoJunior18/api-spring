@@ -12,24 +12,35 @@ import com.domain.entities.dto.UserDTO;
 public class UserService {
 
     public UserDTO createUser(UserDTO dto) {
+        var response = new UserDTO();
 
-        System.out.println("teste");
+        response.setName("teste");
 
-        System.out.println("test2");
-
-        return null;
+        return response;
     }
 
     public UserDTO findUser(String document) {
-        return null;
+        var response = new UserDTO();
+
+        response.setName("teste");
+
+        return response;
     }
 
     public UserDTO updateUser(String document) {
-        return null;
+        var response = new UserDTO();
+
+        response.setName("teste");
+
+        return response;
     }
 
     public UserDTO deleteUser(String document, String password) {
-        return null;
+        var response = new UserDTO();
+
+        response.setName("teste");
+
+        return response;
     }
 
 }
