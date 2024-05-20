@@ -8,7 +8,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/EdevaldoJunior18/api-spring.git'
+                script {
+                    // Verifica se o repositório Git existe e o branch está correto
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/EdevaldoJunior18/api-spring.git']]])
+                }
             }
         }
 
