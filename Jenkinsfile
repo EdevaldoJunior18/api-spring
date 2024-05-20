@@ -8,9 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/EdevaldoJunior18/api-spring.git']]])
-                }
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/EdevaldoJunior18/api-spring.git']]])
             }
         }
 
@@ -23,7 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dir('api-spring') { // Certifique-se de que o nome do diretório é correto
+                    // Ajuste este caminho se o pom.xml não estiver na raiz do repositório
+                    dir('api-spring') { 
                         sh "${MVN_HOME}/bin/mvn clean compile"
                     }
                 }
@@ -33,7 +32,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    dir('api-spring') {
+                    dir('api-spring') { 
                         sh "${MVN_HOME}/bin/mvn test"
                     }
                 }
@@ -43,7 +42,7 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    dir('api-spring') {
+                    dir('api-spring') { 
                         sh "${MVN_HOME}/bin/mvn package -Dmaven.test.skip=true"
                     }
                 }
@@ -53,7 +52,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dir('api-spring') {
+                    dir('api-spring') { 
                         sh 'docker build -t my-app:latest .'
                     }
                 }
@@ -64,11 +63,9 @@ pipeline {
     post {
         success {
             echo 'Build completed successfully!'
-            // Adicione notificação de sucesso aqui, se necessário
         }
         failure {
             echo 'Build failed!'
-            // Adicione notificação de falha aqui, se necessário
         }
     }
 }
