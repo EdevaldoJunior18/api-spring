@@ -6,6 +6,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/EdevaldoJunior18/api-spring.git'
+            }
+        }
+
         stage('Clean Workspace') {
             steps {
                 cleanWs()
@@ -15,7 +21,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "${MVN_HOME}/bin/mvn clean compile"
+                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                        sh "${MVN_HOME}/bin/mvn clean compile"
+                    }
                 }
             }
         }
@@ -23,7 +31,9 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh "${MVN_HOME}/bin/mvn test"
+                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                        sh "${MVN_HOME}/bin/mvn test"
+                    }
                 }
             }
         }
@@ -31,7 +41,9 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    sh "${MVN_HOME}/bin/mvn package -Dmaven.test.skip=true"
+                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                        sh "${MVN_HOME}/bin/mvn package -Dmaven.test.skip=true"
+                    }
                 }
             }
         }
@@ -39,8 +51,9 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    // Substitua pelo comando para construir a imagem Docker, se necessário
-                    sh 'docker build -t my-app:latest .'
+                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                        sh 'docker build -t my-app:latest .'
+                    }
                 }
             }
         }
