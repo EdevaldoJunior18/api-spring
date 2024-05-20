@@ -2,13 +2,15 @@ pipeline {
     agent any
 
     environment {
+        // Configurar o Maven com o nome usado no Jenkins
         MVN_HOME = tool name: 'Maven 3', type: 'maven'
+        PATH = "${MVN_HOME}/bin:${env.PATH}"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/EdevaldoJunior18/api-spring.git']]])
+                checkout scm
             }
         }
 
@@ -21,9 +23,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dir('api-spring') { 
-                        sh "mvn clean compile"
-                    }
+                    // Verifique o conteúdo do diretório
+                    sh 'ls -la'
+                    // Execute o Maven usando apenas 'mvn' pois o PATH já foi atualizado
+                    sh 'mvn clean compile'
                 }
             }
         }
@@ -31,9 +34,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    dir('api-spring') { 
-                        sh "${MVN_HOME}/bin/mvn test"
-                    }
+                    sh 'mvn test'
                 }
             }
         }
@@ -41,9 +42,7 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    dir('api-spring') { 
-                        sh "${MVN_HOME}/bin/mvn package -Dmaven.test.skip=true"
-                    }
+                    sh 'mvn package -Dmaven.test.skip=true'
                 }
             }
         }
@@ -51,9 +50,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dir('api-spring') { 
-                        sh 'docker build -t my-app:latest .'
-                    }
+                    sh 'docker build -t my-app:latest .'
                 }
             }
         }
