@@ -9,7 +9,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Verifica se o repositório Git existe e o branch está correto
                     checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/EdevaldoJunior18/api-spring.git']]])
                 }
             }
@@ -24,7 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                    dir('api-spring') { // Certifique-se de que o nome do diretório é correto
                         sh "${MVN_HOME}/bin/mvn clean compile"
                     }
                 }
@@ -34,7 +33,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                    dir('api-spring') {
                         sh "${MVN_HOME}/bin/mvn test"
                     }
                 }
@@ -44,7 +43,7 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                    dir('api-spring') {
                         sh "${MVN_HOME}/bin/mvn package -Dmaven.test.skip=true"
                     }
                 }
@@ -54,7 +53,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dir('api-spring') { // Certifique-se de que está no diretório correto
+                    dir('api-spring') {
                         sh 'docker build -t my-app:latest .'
                     }
                 }
