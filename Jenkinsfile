@@ -21,9 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Ajuste este caminho se o pom.xml não estiver na raiz do repositório
                     dir('api-spring') { 
-                        sh "${MVN_HOME}/mvn clean compile"
+                        sh "mvn clean compile"
                     }
                 }
             }
