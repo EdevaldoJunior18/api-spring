@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     // Substitua pelo comando para construir a imagem Docker, se necessário
-                    // sh 'docker build -t my-app:latest .'
+                    sh 'docker build -t my-app:latest .'
                 }
             }
         }
