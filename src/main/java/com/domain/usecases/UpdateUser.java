@@ -8,16 +8,20 @@ import com.domain.repositories.IUserRepository;
  *
  * @author Ed
  */
-public class CreateUser {
+public class UpdateUser {
 
     IUserRepository userRepository;
 
-    public CreateUser(IUserRepository userRepository) {
+    public UpdateUser(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public UserDTO execute(UserDTO dto) {
-        var bo = userRepository.create(UserMapper.toBO(dto));
+    public UserDTO execute(String document, String password) {
+        var bo = userRepository.findBy(document);
+
+        // atualiza
+
+        // merge
 
         return UserMapper.toDTO(bo);
     }

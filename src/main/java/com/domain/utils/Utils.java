@@ -1,5 +1,9 @@
 package com.domain.utils;
 
+/**
+ *
+ * @author Ed
+ */
 public class Utils {
 
     public static boolean isNullOrEmpty(Object object) {

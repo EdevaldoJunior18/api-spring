@@ -23,9 +23,7 @@ pipeline {
             steps {
                 dir('api-spring') {
                     script {
-                        // Verifique o conteúdo do diretório
                         sh 'ls -la'
-                        // Execute o Maven
                         sh 'mvn clean compile'
                     }
                 }

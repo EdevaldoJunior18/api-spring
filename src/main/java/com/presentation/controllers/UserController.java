@@ -1,6 +1,5 @@
 package com.presentation.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,10 +15,7 @@ import com.domain.entities.dto.UserDTO;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
-
-    @Autowired
-    private UserService userService;
+public class UserController extends AbstractController {
 
     @PostMapping
     public UserDTO createUser(UserDTO dto) {
@@ -32,8 +28,8 @@ public class UserController {
     }
 
     @PatchMapping
-    public UserDTO updateUser(String document) {
-        return userService.updateUser(document);
+    public UserDTO updateUser(String document, String password) {
+        return userService.updateUser(document, password);
     }
 
     @DeleteMapping
