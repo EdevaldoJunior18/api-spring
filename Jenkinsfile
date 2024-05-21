@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         MVN_HOME = tool name: 'Maven 3', type: 'maven'
-        PATH = "${MVN_HOME}usr/bin/mvn:${env.PATH}"
+        PATH = "${MVN_HOME}/usr/bin/mvn:${env.PATH}"
     }
 
     stages {
