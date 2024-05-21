@@ -10,8 +10,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Realiza o checkout do código
-                    //teste
                     checkout([
                         $class: 'GitSCM',
                         branches: [[name: '*/main']],
@@ -26,7 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('api-spring') {
+                dir('api-teste') {
                     script {
                         sh 'ls -la'
                         sh 'mvn clean install'
