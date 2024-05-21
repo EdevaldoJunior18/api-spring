@@ -30,5 +30,14 @@ pipeline {
                 }
             }
         }
+
+         stage('Deploy') {
+            steps {
+                script {
+                    sh 'ls -la'
+                    sh 'mvn spring-boot:run'
+                }
+            }
+        }
     }
 }
