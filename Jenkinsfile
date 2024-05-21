@@ -11,6 +11,7 @@ pipeline {
             steps {
                 script {
                     // Realiza o checkout do código
+                    //teste
                     checkout([
                         $class: 'GitSCM',
                         branches: [[name: '*/main']],
