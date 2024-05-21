@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('api-teste') {
+                dir() {
                     script {
                         sh 'ls -la'
                         sh 'mvn clean install'
