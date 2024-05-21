@@ -9,7 +9,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                script {
+                    // Realiza o checkout do código
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/EdevaldoJunior18/api-spring',
+                            credentialsId: '915a442b-7342-4ade-9485-b5814ab03d47'
+                        ]]
+                    ])
+                }
             }
         }
 
