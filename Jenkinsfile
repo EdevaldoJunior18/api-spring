@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        MVN_HOME = tool name: 'Maven 3', type: 'maven'
-        PATH = "${MVN_HOME}/usr/bin/mvn:${env.PATH}"
+        MVN_HOME = '/usr/bin'
+        PATH = "${MVN_HOME}:${env.PATH}"
     }
 
     stages {
