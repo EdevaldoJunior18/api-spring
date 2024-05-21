@@ -24,7 +24,7 @@ pipeline {
                 dir('api-spring') {
                     script {
                         sh 'ls -la'
-                        sh 'mvn clean compile'
+                        sh 'mvn clean install'
                     }
                 }
             }
