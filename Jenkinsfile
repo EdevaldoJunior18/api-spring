@@ -24,12 +24,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir() {
+              
                     script {
                         sh 'ls -la'
                         sh 'mvn clean install'
                     }
-                }
+                
             }
         }
 
