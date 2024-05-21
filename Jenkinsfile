@@ -24,52 +24,11 @@ pipeline {
 
         stage('Build') {
             steps {
-              
-                    script {
-                        sh 'ls -la'
-                        sh 'mvn clean install'
-                    }
-                
-            }
-        }
-
-        stage('Test') {
-            steps {
-                dir('api-spring') {
-                    script {
-                        sh 'mvn test'
-                    }
+                script {
+                    sh 'ls -la'
+                    sh 'mvn clean compile'
                 }
             }
-        }
-
-        stage('Package') {
-            steps {
-                dir('api-spring') {
-                    script {
-                        sh 'mvn package -Dmaven.test.skip=true'
-                    }
-                }
-            }
-        }
-
-        stage('Build Image') {
-            steps {
-                dir('api-spring') {
-                    script {
-                        sh 'docker build -t my-app:latest .'
-                    }
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build completed successfully!'
-        }
-        failure {
-            echo 'Build failed!'
         }
     }
 }
