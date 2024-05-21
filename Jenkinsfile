@@ -24,12 +24,6 @@ pipeline {
             }
         }
 
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }
-
         stage('Build') {
             steps {
                 dir('api-spring') {
