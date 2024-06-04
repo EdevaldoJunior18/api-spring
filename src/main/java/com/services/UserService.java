@@ -15,8 +15,11 @@ public class UserService {
         // var create = new CreateUser(userRepository);
         // return create.execute(dto);
 
-        return null;
+        var teste = new UserDTO();
 
+        teste.setName("Apenas um teste!");
+
+        return teste;
     }
 
     public UserDTO findUser(String document) {
