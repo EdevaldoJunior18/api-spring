@@ -1,0 +1,2 @@
+##Comando Docker para subir base com Postgres:
+docker run --name pg-spring-api -e POSTGRES_USER=myApi -e POSTGRES_PASSWORD=1515 -p 5443:5432 -d postgres
